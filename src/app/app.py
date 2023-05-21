@@ -1,12 +1,14 @@
-from flask import Flask
+from flask import abort, jsonify, redirect, render_template, request, url_for
+from flask_migrate import Migrate
+import sys
 
-app = Flask(__name__)
+from init import create_app
+from models import db, Quiz
 
+app = create_app()
+# bootstrap database migrate commands
+db.init_app(app)
+migrate = Migrate(app, db)
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
-
-
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
