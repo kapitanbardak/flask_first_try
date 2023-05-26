@@ -32,6 +32,6 @@ services:
       depends_on:
         - pgsql
       ports:
-        - 5000:5000
+        - 80:5000
       volumes:
         - ./src/app:/usr/src/app
